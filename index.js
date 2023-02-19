@@ -3,16 +3,18 @@ const { connection } = require("./configs/db");
 const { userRouter } = require("./routes/User.route");
 const { noteRouter } = require("./routes/Note.router");
 const { authenticate } = require("./middlewares/authentication");
+var cors = require('cors')
+const app = express();
+// const cors=require("cors")
 require('dotenv').config()
 
-const cors=require("cors")
 
-const app = express();
-app.use(cors({
-  origin:"*"
-}))
-// app.use(cors())
+// app.use(cors({
+//   origin:"*"
+// }))
 app.use(express.json());
+app.use(cors())
+
 
 app.get("/", (req, res) => {
   res.send("Home page");
